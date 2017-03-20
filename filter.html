@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>angular过滤器</title>
+</head>
+<body ng-app="hello">
+  <div ng-controller="t">{{msg | testA}}</div>
+  <script src="../angular/angular.js"></script>
+  <script src="../angular-ui-router/angular-ui-router.js"></script>
+  <script>
+      angular.module('hello', ['ui.router'])
+      .controller('t',function ($scope) {
+        $scope.msg = '我是中国人！'
+      })
+      .filter('testA',[function (input) {
+        console.log(arguments)
+        return function (input) {
+          console.log(arguments)
+          console.log(this)
+          return '中国必胜' + input
+        }
+      }])
+    
+  </script>
+</body>
+</html>
